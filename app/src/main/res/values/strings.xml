@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VibeScanner</string>
+    <string name="trackingButton">Start New Motion Tracking</string>
+    <string name="stopTrackingButton">Stop Motion Tracking</string>
+    <string name="showTrackingInfoBtn">Show Track Information On Map</string>
+    <string name="uploadbtntxt">Upload a GPX file</string>
+</resources>
