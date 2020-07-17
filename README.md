@@ -57,4 +57,4 @@ approach would be to seperate this distance into small segments of the same size
 this processing, the accumulated information can be formated and stored in a gpx file. This whole work is done by a sperate thread, which makes the operations
 related to registering data from sensors sepearte from data processing. 
 
-*Expect soon update with description of the classes related to parsing gpx files, track drawing in OpenStreetMaps and uploading files to a server* 
+*!!!Expect soon update with description of the classes related to parsing gpx files, track drawing in OpenStreetMaps and uploading files to a server!!!* 
