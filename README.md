@@ -13,4 +13,46 @@ The purpose of this Android application is to register vibrations that occured d
 # 2. class Trackpoint 
      This class inherits class Extension and provides implementation of <trkpt> element from GPX 1.1 schema. It is used for describing a
      single geographical point and additional information about the mechanical influence imposed on the device before reaching the next point.
+
+# 3. class Track
+     This class corresponds to the <trk> element from GPX 1.1 schema and stores the geographic points of the route. It has a memeber - ArrayList of Trackpoints.
+     Thus the order in which different locations occured is preserved because it is important for afterwards visualisation of the track.
+     
+# 4. class GPX
+      
+    This class has memebers String version, String creator which correspond to the <gpx> element attributes. In the current app version a single <gpx> element
+    can have only one <trk> child element.
     
+# 5. class AccelData
+
+ The main purpose of this class is to encapsulate values registred by accelerometer during a single sensor event. The time of event handling
+ is also stored because it is of importance when we start processing accumulated data. (further explanation about that can be found in the description
+ of class AccelAndRotRunnable).
+
+# 6. class OrientationData
+
+It encapsulates data about the device orientation in space and the time of event handling.
+
+# 7. class AccelerationListener
+
+This class provides implementation of the callback methods which handle events registered by the device accelerometer. The main purpose is to obtain event 
+values, filter out insignificant data and temporary store values in objects of class AccelData. It is important to mention that there is a sperate thread 
+which executes the methods of this class.
+
+# 8. class RotationListener
+
+It encapsulates ArrayList of references to objects of class OrientationData and implements callback methods for handling events registered by Rotation Vector
+Sensor. The values obtained by this synthetic sensor are elements from rotation vector which correspond to sin(θ/2)  (θ – rotation angle). The direct 
+visualisation of this values can not give clarity about the device orientation in space. We have to convert the values to rotation matrix and after that
+obtain the orientation which represents three values - rotation around x,y and z-axis. Not every single rotation event is stored. There is a filter which
+evaluates the difference in rotation angle compared to the previous event. The methods of this class are also executed by a seperate thread. Thus rotation
+events can be handled without missing acceleration and location events.
+
+# 9. class AccelAndRotRunnable
+
+This class provides functionality related to processing of acceleration data accumulated between two locations. We should take into consideration the fact that
+the distance between two points is not fixed and can vary from 10m to 100m or more depending on the strength of the GPS signal. If we directly calculate the
+arithmetic mean of the registered acceleration event values for greater distances, we will miss information about how the acceleration develops in time. The better
+approach would be to seperate this distance into small segments of the same size and calculate the arithmetic mean of acceleration in every single segment. After
+this processing, the accumulated information can be formated and stored in a gpx file. This whole work is done by a sperate thread, which makes the operations
+related to registering data from sensors sepearte from data processing. 
