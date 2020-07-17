@@ -56,3 +56,5 @@ arithmetic mean of the registered acceleration event values for greater distance
 approach would be to seperate this distance into small segments of the same size and calculate the arithmetic mean of acceleration in every single segment. After
 this processing, the accumulated information can be formated and stored in a gpx file. This whole work is done by a sperate thread, which makes the operations
 related to registering data from sensors sepearte from data processing. 
+
+*Expect soon update with description of the classes related to parsing gpx files, track drawing in OpenStreetMaps and uploading files to a server* 
