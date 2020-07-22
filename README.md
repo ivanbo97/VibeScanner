@@ -77,5 +77,9 @@ This class encapsulates functionality needed for structring the collected data f
  ***Intermediate writing :*** When the size of the ArrayList<Trackpoint> trackpoints reaches 4, we should transfer the data from RAM to file and free the memory allocated for those objects. During the intemediate write new trkpt elements with additional information are added to trkseg element.
  
  ***Final writing (void finalWriteGPX(BufferedWriter gpxFileStream)):*** Final writing is about closing the elements which have been initialized by the primary writing.
+ 
+ # 12. class ExtensionParser
+ 
+ This class encapsulates functionality related to structuring the extension information coming with a location point - acceleartion data/orientation data, and writing it in a gpx file. Extension data is stored in a LinkedHasMap <String, Float>. The key is the name of the tag (example: "xAcc0","yAcc0"...) and in the object of class Float is stored the tag's content. After iterating through each pair of the LinkedHashMap, closing tags for the corresponding elements are added.
 
-*!!!Expect soon update with description of the classes related to parsing gpx files, track drawing in OpenStreetMaps and uploading files to a server!!!* 
+*!!!Expect soon update with description of the classes related to track drawing in OpenStreetMaps and uploading files to a server!!!* 
