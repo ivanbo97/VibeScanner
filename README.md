@@ -67,7 +67,7 @@ operate on different objects in memory than those of the processing thread.
 
 This class encapsulates functionality needed for structring the collected data from sensors in XML format. Taking into consideartion the idea that the content of the app memory will be periodically transfered into a gpx file, we can conclude that there would be 3 different tpypes of file writing: primary, intermediate and final.
 
-***Primary writing (void onLocationChanged(Location location) )** : Standart initialization of XML document with XML version and charcter encoding. Then the root element (<gpx>) with its attributes is added. Example file content after the first writing opeartion:
+***Primary writing (void onLocationChanged(Location location) )** : Standart initialization of XML document with XML version and charcter encoding. Then the root element ("<gpx>") with its attributes is added. Example file content after the first writing opeartion:
  
  ?xml version="1.0" encoding="UTF-8"?>
  <gpx
