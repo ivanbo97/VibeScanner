@@ -65,7 +65,7 @@ operate on different objects in memory than those of the processing thread.
 
 # 11. class GPXParser
 
-This class encapsulates functionality needed for structring the collected data from sensors in XML format. Taking into consideartion the idea that the content of the app memory will be periodically transfered into a gpx file, we can conclude that there would be 3 different tpypes of file writing: primary, intermediate and final.
+This class encapsulates functionality needed for structring the collected data from sensors in XML format. Taking into consideartion the idea that the content of the app memory will be periodically transfered into a gpx file, we can conclude that there would be 3 different types of file writing: primary, intermediate and final.
 
 ***Primary writing (void onLocationChanged(Location location) )** : Standart initialization of XML document with XML version and charcter encoding. Then the root element with its attributes is added. Example file content after the first writing opeartion:
  
@@ -73,9 +73,9 @@ This class encapsulates functionality needed for structring the collected data f
  <gpx
   version="1.1"
   creator="Anonymous" 
-  
-  
-
-
+ 
+ ***Intermediate writing :*** When the size of the ArrayList<Trackpoint> trackpoints reaches 4, we should transfer the data from RAM to file and free the memory allocated for those objects. During the intemediate write new trkpt elements with additional information are added to trkseg element.
+ 
+ ***Final writing (void finalWriteGPX(BufferedWriter gpxFileStream)):*** Final writing is about closing the elements which have been initialized by the primary writing.
 
 *!!!Expect soon update with description of the classes related to parsing gpx files, track drawing in OpenStreetMaps and uploading files to a server!!!* 
