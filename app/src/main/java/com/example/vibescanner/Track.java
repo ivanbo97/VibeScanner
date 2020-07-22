@@ -9,6 +9,7 @@ public class Track extends Extension {
     private ArrayList<Trackpoint> trackPoints;
 
     public Track() {
+
     }
 
 
