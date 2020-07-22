@@ -58,7 +58,7 @@ foreach($trkptiter as $trkpt){
 		}		
 	}
 	if($hasAccelerationInfo === true)
-                         $db->query("INSERT INTO acceleration (trackptid,xAccel,yAccel,zAccel)     sdssdsdsdsssdsdsdsdsdsdVALUES".implode(',',$sqlAcceleration));
+                         $db->query("INSERT INTO acceleration (trackptid,xAccel,yAccel,zAccel)VALUES".implode(',',$sqlAcceleration));
 
 	if($hasOrientationInfo === true)
 	    $db->query("INSERT INTO rotation (trackptid,xOrient,yOrient,zOrient)VALUES".implode(',',$sqlOrientation));
