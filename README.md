@@ -1,8 +1,8 @@
 # About VibeScanner
-The purpose of this Android application is to register vibrations that occured during travelling with different vehicles. Data is collected from different device sensors: Linear Acceleration, Rotation Vector, GPS Reciever. After processesing, the collected data is stored in a gpx file. Thus you can see the mechanical influence imposed to your device during your travel. The generated track can be visualised in OpenStreetMaps and different segments of the route are colored in green, yellow, red, according to the different levels of vibration. You can also upload a file to remote server and distribute the data in different tables in a relational database.
+The purpose of this Android application is to register vibrations that occured during travelling with different vehicles. Data is collected from different device sensors: Linear Acceleration, Rotation Vector, GPS Reciever. After processesing, the collected data is stored in a gpx file. Thus you can see the mechanical influence imposed to your device during your travel. The generated track can be visualised in OpenStreetMaps and different segments of the route are colored in green, yellow, red, according to the different levels of vibration. You can also upload gpx files to a server and distribute the data in different tables in a relational database.
 
 # A brief description of the application specific classes
-  
+ 
 # 1. class Extension 
     This class is a representation of the <extension> element which is part of the GPX 1.1 schema.
     The children of this element store values related to acceleration and rotation events that occured during the travel.
@@ -50,11 +50,19 @@ events can be handled without missing acceleration and location events.
 
 # 9. class AccelAndRotRunnable
 
-This class provides functionality related to processing of acceleration data accumulated between two locations. We should take into consideration the fact that
-the distance between two points is not fixed and can vary from 10m to 100m or more depending on the strength of the GPS signal. If we directly calculate the
-arithmetic mean of the registered acceleration event values for greater distances, we will miss information about how the acceleration develops in time. The better
-approach would be to seperate this distance into small segments of the same size and calculate the arithmetic mean of acceleration in every single segment. After
-this processing, the accumulated information can be formated and stored in a gpx file. This whole work is done by a sperate thread, which makes the operations
-related to registering data from sensors sepearte from data processing. 
+This class provides functionality related to processing of acceleration data accumulated between two locations and also initialises file writing opeartions.
+We should take into consideration the fact that the distance between two points is not fixed and can vary from 10m to 100m or more depending on the strength
+of the GPS signal. If we directly calculate the arithmetic mean of the registered acceleration event values for greater distances, we will miss information about how the acceleration develops in time. The better approach would be to seperate this distance into small segments of the same size and calculate the arithmetic mean of acceleration in every single segment. After this processing, the accumulated information can be formated and stored in a gpx file. This whole work is done by a sperate thread, which makes the operations related to registering data from sensors, sepearte from data processing. 
+
+# 10. class CustomLocationLitener
+
+This class encapsulates the imlementation of the callback method - void onLocationChanged(Location location) which is invoked when location change event appears. 
+Firstly, we create an instance of class Trackpoint and set its values for latitude and longitude depending on the content of the location object which is passed
+to the method. If it is the first location, we should notify AccelerationListener and RotationListener objects ,by raising a flag, in order to start collecting data from their sensors. After that the thread for processing acceleration and rotation data is started. It makes its calculations using the data stored in accelInfo object
+which is a member of the AccelerationListener object. Suppose there are acceleration events during the time of processing, we should guarantee that they are saved and
+correspond to the next segment. So we have to create new instances of AccelData and OrientationData classes. Thus the rotation and acceleration listeners will
+operate on diffrent objects in memory than those of the processing thread.
+
+
 
 *!!!Expect soon update with description of the classes related to parsing gpx files, track drawing in OpenStreetMaps and uploading files to a server!!!* 
