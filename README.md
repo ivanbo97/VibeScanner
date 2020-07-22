@@ -4,24 +4,24 @@ The purpose of this Android application is to register vibrations that occured d
 # A brief description of the application specific classes
  
 # 1. class Extension 
-    This class is a representation of the <extension> element which is part of the GPX 1.1 schema.
-    The children of this element store values related to acceleration and rotation events that occured during the travel.
-    The class has a member - extensionData which is a reference to an object of class LinkedHashMap <String, Float>. 
-    String value is a key which corresponds to a tag name (for example: "<xAcc0>" - x-axis acceleration,"<xOri0>" - rotation around x-axis).
-    In the object of class Float are stored values representing accelerations (m/s^2) or rotations around the coordinate axes.
+   This class is a representation of the <extension> element which is part of the GPX 1.1 schema.
+   The children of this element store values related to acceleration and rotation events that occured during the travel.
+   The class has a member - extensionData which is a reference to an object of class LinkedHashMap <String, Float>. 
+   String value is a key which corresponds to a tag name (for example: "<xAcc0>" - x-axis acceleration,"<xOri0>" - rotation around x-axis).
+   In the object of class Float are stored values representing accelerations (m/s^2) or rotations around the coordinate axes.
     
 # 2. class Trackpoint 
-     This class inherits class Extension and provides implementation of <trkpt> element from GPX 1.1 schema. It is used for describing a
-     single geographical point and additional information about the mechanical influence imposed on the device before reaching the next point.
+   This class inherits class Extension and provides implementation of <trkpt> element from GPX 1.1 schema. It is used for describing a
+   single geographical point and additional information about the mechanical influence imposed on the device before reaching the next point.
 
 # 3. class Track
-     This class corresponds to the <trk> element from GPX 1.1 schema and stores the geographic points of the route. It has a memeber - ArrayList of Trackpoints.
-     Thus the order in which different locations occured is preserved because it is important for afterwards visualisation of the track.
+   This class corresponds to the <trk> element from GPX 1.1 schema and stores the geographic points of the route. It has a memeber - ArrayList of Trackpoints.
+   Thus the order in which different locations occured is preserved because it is important for afterwards visualisation of the track.
      
 # 4. class GPX
-      
-    This class has memebers String version, String creator which correspond to the <gpx> element attributes. In the current app version a single <gpx> element
-    can have only one <trk> child element.
+
+   This class has memebers String version, String creator which correspond to the <gpx> element attributes. In the current app version a single <gpx> element
+   can have only one <trk> child element.
     
 # 5. class AccelData
 
