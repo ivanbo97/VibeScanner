@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Track extends Extension {
 
     private ArrayList<Trackpoint> trackPoints;
-
+    int a;
     public Track() {
 
     }
