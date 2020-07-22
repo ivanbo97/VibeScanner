@@ -61,7 +61,20 @@ Firstly, we create an instance of class Trackpoint and set its values for latitu
 to the method. If it is the first location, we should notify AccelerationListener and RotationListener objects ,by raising a flag, in order to start collecting data from their sensors. After that the thread for processing acceleration and rotation data is started. It makes its calculations using the data stored in accelInfo object
 which is a member of the AccelerationListener object. Suppose there are acceleration events during the time of processing, we should guarantee that they are saved and
 correspond to the next segment. So we have to create new instances of AccelData and OrientationData classes. Thus the rotation and acceleration listeners will
-operate on diffrent objects in memory than those of the processing thread.
+operate on different objects in memory than those of the processing thread.
+
+# 11. class GPXParser
+
+This class encapsulates functionality needed for structring the collected data from sensors in XML format. Taking into consideartion the idea that the content of the app memory will be periodically transfered into a gpx file, we can conclude that there would be 3 different tpypes of file writing: primary, intermediate and final.
+
+***Primary writing (void onLocationChanged(Location location) )** : Standart initialization of XML document with XML version and charcter encoding. Then the root element (<gpx>) with its attributes is added. Example file content after the first writing opeartion:
+ 
+ ?xml version="1.0" encoding="UTF-8"?>
+ <gpx
+  version="1.1"
+  creator="Anonymous" 
+  
+  
 
 
 
