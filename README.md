@@ -81,5 +81,11 @@ This class encapsulates functionality needed for structring the collected data f
  # 12. class ExtensionParser
  
  This class encapsulates functionality related to structuring the extension information coming with a location point - acceleartion data/orientation data, and writing it in a gpx file. Extension data is stored in a LinkedHasMap <String, Float>. The key is the name of the tag (example: "xAcc0","yAcc0"...) and in the object of class Float is stored the tag's content. After iterating through each pair of the LinkedHashMap, closing tags for the corresponding elements are added.
+ 
+ # Parsing the data stored in a gpx file
+ 
+ The information stored in a gpx file, related to device location, outer mechanical influence and orientation in space, should be extracted as values and later used for providing different functonality. In the current application this data will be used for representing a track in OpenStreetMap. Reading from the gpx file should be step by step in order to prevent running out of memory. Therefore it is important to choose a proper API for parsing. In our case this is SAX (Simple API for XML).
+ 
+ SAX provides event-based model for accessing XML documents and the main events are: start of element, end of element, sequence of characters. After encountering one of these events, the API invokes the corresponding callback methods which are encapsulated in class GPXHandler. 
 
 *!!!Expect soon update with description of the classes related to track drawing in OpenStreetMaps and uploading files to a server!!!* 
