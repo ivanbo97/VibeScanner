@@ -111,5 +111,5 @@ Description of the implementation of the callback methods:
   
  # 16. class FileUploadRunnable
  
- The work that is going to be performed by the thread is implemented in method void run(). The creation and sending of the HTTP request is done by using OKHttp library.
+ The work that is going to be performed by the thread is implemented in method void run(). The creation and sending of the HTTP request is done by using OKHttp library. After the file has been transfered via POST method, the php script (save_file.php) is executed on server-side. It processes the file and records the data in corresponding tables of a relation database.
   
