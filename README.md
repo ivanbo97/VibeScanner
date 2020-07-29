@@ -91,12 +91,25 @@ This class encapsulates functionality needed for structring the collected data f
 # 13. class GPXHandler
 
 Description of the implementation of the callback methods:
- - void startElement(String uri, String localName, String qName, Attributes attributes) : The application has different behaviour depending on current tag's name stored in qName. If <trkpt> is encounterd during parsing of the gpx file, a new object of class Trackpoint is created and its members - latitude and longitude are being set related to the content of the Attributes object passed to the method. If the current element is <extensions>, this means that we have reached the additional data and have to provide a place for storing it - object of class LinkedHashMap. If the tag of the encountered element starts with xAcc, yAcc, zAcc or xOri, yOri, zOri we should allocate memory for storing the content of this tag - in object of class StringBuilder.
+ - void startElement(String uri, String localName, String qName, Attributes attributes) : The application has different behaviour depending on current tag's name stored in qName. If trkpt is encounterd during parsing of the gpx file, a new object of class Trackpoint is created and its members - latitude and longitude are being set related to the content of the Attributes object passed to the method. If the current element is <extensions>, this means that we have reached the additional data and have to provide a place for storing it - object of class LinkedHashMap. If the tag of the encountered element starts with xAcc, yAcc, zAcc or xOri, yOri, zOri we should allocate memory for storing the content of this tag - in object of class StringBuilder.
  
  - public void characters(char ch[], int start, int length) : This method is called by the API when sequence of charcters between starting tag and closing tag is being encountered.
  
 - public void endElement(String uri, String localName, String qName) : The implementation of this method is very important for manging the memory used by the application. It controls the current number of Trackpoint objects. If closing tag : </trkpt> is encountered , this means that all the information about the location is being read and the reference to the Trackpoint object can be added to ArrayList <Trackpoint> trackpoints. After that, if the current number of points in memory exceeds the uppper limit, it is time for map drawing which is performed by methods of class MapDrawer.
- It is important to notice the role of trackPointsDrawn flag in this situation: When the API reaches </trkseg> but there are still track points in the ArrayList which have not been visualsied on the map yet becuse their number is below the upper limit of drawing. 
+ It is important to notice the role of trackPointsDrawn flag in this situation: When the API reaches /trkseg closing tag but there are still track points in the ArrayList which have not been visualsied on the map yet because their number is below the upper limit of drawing. 
  
+ # 14. class MapDrawer
  
-*!!!Expect soon update with description of the classes related to track drawing in OpenStreetMaps and uploading files to a server!!!* 
+ This class encapsulates functionality related to iterating through Trackpoint object, extracting information and drawing on OpenStreetMaps. The color of the segment between two locations is defined by the average value of acceleration between these two points.
+ 
+ # Uploading gpx files to server
+ 
+ The process of uploading is carried out by a foreground service which starts a seperate thread. Thus the main functionality and performance of the application is not affected. 
+ # 15. class UploadingService
+  
+  When this type of service is started, location of the file that is going to be uploaded is passed from the MainActivity via an Intent.
+  
+ # 16. class FileUploadRunnable
+ 
+ The work that is going to be performed by the thread is implemented in method void run(). The creation and sending of the HTTP request is done by using OKHttp library.
+  
