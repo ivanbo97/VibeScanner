@@ -3,6 +3,7 @@ package com.example.vibescanner;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
@@ -101,6 +102,12 @@ public class FileChooser {
             if (path.getParentFile() == null) {
                 fileList = new String[dirs.length + files.length];
             } else {
+
+                if(dirs == null)
+                {
+                    dialog.dismiss();
+                    return;
+                }
                 fileList = new String[dirs.length + files.length + 1];
                 fileList[i++] = PARENT_DIR;
             }
