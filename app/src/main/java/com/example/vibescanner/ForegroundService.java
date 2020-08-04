@@ -99,7 +99,7 @@ public class ForegroundService extends Service  {
         locationThread.start();
         Handler locationHandler = new Handler (locationThread.getLooper());
         try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, locationListener, locationHandler.getLooper());
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 10, locationListener, locationHandler.getLooper());
         }catch (SecurityException e )
         {
             e.printStackTrace();
