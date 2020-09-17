@@ -29,9 +29,6 @@ public class GPXParser {
     private Logger logger;
     private static final String fileHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><gpx version=";
 
-    //Not used in current app version!!!
-    private XmlPullParser parser;
-
     public GPXParser() {
 
         extensionParser = new ExtensionParser();
@@ -87,7 +84,7 @@ public class GPXParser {
 
                 }
                 else
-                    gpxFileStream.write("/>"); //No extension data put an end to the <trkpt> element
+                    gpxFileStream.write("/>"); //No extension data -> put an end to the <trkpt> element
             }
     }
 

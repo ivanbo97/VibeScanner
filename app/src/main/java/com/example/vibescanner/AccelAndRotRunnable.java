@@ -37,13 +37,10 @@ public class AccelAndRotRunnable implements Runnable {
     @Override
     public void run()  {
 
-        float xAvgAccel = 0,yAvgAccel = 0,zAvgAccel = 0;
-        float xAccel = 0,yAccel = 0,zAccel = 0;
-
-
         if(distancePassed > 5)
         {
             timePassed = (int) (currentWaypoint.getTimeOfHandling() - previousWaypoint.getTimeOfHandling());
+            
             //Distance between two geographical points is bigger than 5 m;
             timeIntervalInSegment =  (int)((float)(5*timePassed) / distancePassed);
             Log.d("TIME BETWEEN TWO POINTS",String.valueOf(timePassed));

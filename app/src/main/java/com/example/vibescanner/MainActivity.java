@@ -107,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }).showDialog();
-// Set up and filter my extension I am looking for
+
+        // Set up and filter files with the provided extension
         fileChooser.setExtension("gpx");
         fileChooser.showDialog();
     }
@@ -124,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 startUploading();
             }
         }).showDialog();
-// Set up and filter my extension I am looking for
-        fileChooser.setExtension("gpx");
+
+        // Set up and filter files with the provided extension
         fileChooser.showDialog();
     }
 

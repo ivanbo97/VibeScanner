@@ -157,11 +157,12 @@ public class ForegroundService extends Service  {
             manager.createNotificationChannel(serviceChannel);
         }
     }
+
      public static GPXParser getGpxParser(){return gpxParser;}
      public static GPX getGpxElement(){return gpxElement;}
      public static BufferedWriter getWriter(){return bufferedWriter;};
      public  static boolean isFirstWriteInFile() {return  firstWriteInFile;}
-    public  static void setFirstWriteInFileTofalse() {  firstWriteInFile = false;}
+     public  static void setFirstWriteInFileTofalse() {  firstWriteInFile = false;}
 }
 
 

@@ -49,8 +49,6 @@ public class ExtensionParser  {
     return extensionsInfo;
     }
 
-    //Not in used in current app version!!!
-
 
     public void writeWaypointExtensionData( Trackpoint trkpt, BufferedWriter gpxFileStream) {
 

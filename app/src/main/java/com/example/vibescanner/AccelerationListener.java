@@ -26,7 +26,8 @@ public class AccelerationListener implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
 
         eventTime = System.currentTimeMillis();
-        //Save data only when the first location has been found
+        //Save data only when the first location has been registered
+
         if (firstFixPassed) {
 
             //Re-zeroing if the measurement is not significant.
