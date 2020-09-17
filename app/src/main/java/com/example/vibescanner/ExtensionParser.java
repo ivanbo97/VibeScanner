@@ -24,11 +24,12 @@ public class ExtensionParser  {
         Node wptExtensionNode;
         NodeList wptExtensionNodeChildren;
         Node wptExtChildElement;
-        Log.d("Start the transfer from file to RAM:",String.valueOf(System.currentTimeMillis()));
-        wptExtensionNode = extensionNode.getChildNodes().item(0);
-        /*!!!!https://stackoverflow.com/questions/9869507/how-to-create-an-xml-using-xmlserializer-in-android-app!!!!!
 
-        * https://thedeveloperworldisyours.com/android/write-xml-in-android/*/
+        //Log for debugging purpose
+        Log.d("Start the transfer from file to RAM:",String.valueOf(System.currentTimeMillis()));
+
+        wptExtensionNode = extensionNode.getChildNodes().item(0);
+
         Log.d("Num_of_recordings",String.valueOf(wptExtensionNode.getChildNodes().getLength()));
         int size = wptExtensionNode.getChildNodes().getLength();
         wptExtensionNodeChildren = wptExtensionNode.getChildNodes();
@@ -40,6 +41,7 @@ public class ExtensionParser  {
         }
 
 
+       //Log for debugging purpose
 
        Log.d("End the transfer from file to RAM:",String.valueOf(System.currentTimeMillis()));
 
@@ -48,53 +50,6 @@ public class ExtensionParser  {
     }
 
     //Not in used in current app version!!!
-    public LinkedHashMap <String, Float> parseTrackPointExtension(XmlPullParser parser) throws XmlPullParserException,IOException {
-
-        //currently we are on <trkpt> element, so we should move to <WptExt>
-        parser.next();
-        parser.next();
-        parser.require(XmlPullParser.START_TAG,"","WptExt");
-        LinkedHashMap<String, Float> extensionsInfo = new LinkedHashMap<String, Float>();
-
-       // Log.d("Start the transfer from file to RAM:",String.valueOf(System.currentTimeMillis()));
-
-        parser.next(); //moving to the first element representing extension data
-        String tagName;
-        int eventType = parser.getEventType();
-        Float value;
-        while(eventType!=XmlPullParser.END_DOCUMENT)
-        {
-
-            switch (eventType) {
-
-                case XmlPullParser.START_TAG:
-                    tagName = parser.getName();
-                    if(tagName.equals("trkpt") || tagName.equals("trkseg") ) {
-                       // Log.d("Parsing INFO","Reached the next track point or track segment!!!");
-                        return extensionsInfo;
-                    }
-                    else {
-                       // Log.d("Parsing INFO","Parsing extension DATA");
-                        parser.next(); //go to the element content
-                        value = Float.valueOf(parser.getText());
-                      // Log.d("Extnesion Val",parser.getText());
-                        extensionsInfo.put(tagName,value);
-                    }
-                break;
-
-            }
-            parser.next();
-            eventType= parser.getEventType();
-        }
-
-
-
-       // Log.d("End the transfer from file to RAM:",String.valueOf(System.currentTimeMillis()));
-
-
-           return null; //!!!!!!!!!!!!!!
-    }
-
 
 
     public void writeWaypointExtensionData( Trackpoint trkpt, BufferedWriter gpxFileStream) {
