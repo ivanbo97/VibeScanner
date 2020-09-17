@@ -1,12 +1,12 @@
 package com.example.vibescanner;
 
 public class AccelData {
-   private Float xAxisAccel;
-   private Float yAxisAccel;
-   private Float zAxisAccel;
-   private long handlingTime;
+    private Float xAxisAccel;
+    private Float yAxisAccel;
+    private Float zAxisAccel;
+    private long handlingTime;
 
-    public AccelData(Float xAxisAccel, Float yAxisAccel, Float zAxisAccel, long handlingTime ) {
+    public AccelData(Float xAxisAccel, Float yAxisAccel, Float zAxisAccel, long handlingTime) {
         this.xAxisAccel = xAxisAccel;
         this.yAxisAccel = yAxisAccel;
         this.zAxisAccel = zAxisAccel;
@@ -25,5 +25,7 @@ public class AccelData {
         return zAxisAccel;
     }
 
-    public long getHandlingTime() {return handlingTime;}
+    public long getHandlingTime() {
+        return handlingTime;
+    }
 }

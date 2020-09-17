@@ -15,7 +15,7 @@ public class CustomLocationListener implements LocationListener {
     private RotationListener rotationListener;
     private Trackpoint currentTrackPoint;
     private static Trackpoint previousTrackPoint;
-    private ArrayList <Trackpoint> trkPts;
+    private ArrayList<Trackpoint> trkPts;
     private long locationHandlingTime;
     private Thread extensionWriterTh;
     private boolean firstFixPassed;
@@ -38,12 +38,11 @@ public class CustomLocationListener implements LocationListener {
     public void onLocationChanged(Location location) {
 
         locationHandlingTime = System.currentTimeMillis();
-        if(!firstFixPassed) {
+        if (!firstFixPassed) {
             //Start registering acceleration and rotation data after the first location.
             firstTrkPt(location);
             return;
-        }
-        else {
+        } else {
             Toaster.toastLong("New location has been registered!!!");
 
             currentTrackPoint = new Trackpoint();
@@ -57,11 +56,12 @@ public class CustomLocationListener implements LocationListener {
             distancePassed = lastLocation.distanceTo(location);
             timePassed = (int) (currentTrackPoint.getTimeOfHandling() - previousTrackPoint.getTimeOfHandling());
 
-            extensionWriterTh = new Thread(new AccelAndRotRunnable(currentTrackPoint, previousTrackPoint, trkPts, locationHandlingTime, accelerationListener.getAccelInfo(),rotationListener.getOrientationInfo(), distancePassed));
+            extensionWriterTh = new Thread(new AccelAndRotRunnable(currentTrackPoint, previousTrackPoint, trkPts, locationHandlingTime, accelerationListener.getAccelInfo(), rotationListener.getOrientationInfo(), distancePassed));
             extensionWriterTh.start();
 
-            /*Creating new instances of AccelData and OrientationData classes,
-              thus the old objects can be garbage collected after the execution of extensions writer thread .
+
+            /* Creating new instances of AccelData and OrientationData classes,
+             *thus the old objects can be garbage collected after the execution of extensions writer thread .
              */
             accelerationListener.newEvents();
             rotationListener.newEvents();
@@ -79,13 +79,13 @@ public class CustomLocationListener implements LocationListener {
     public void onProviderDisabled(String provider) {
         //Intentionally left blank for future app development!
     }
+
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         //Intentionally left blank for future app development!
     }
 
-    public void firstTrkPt(Location location)
-    {
+    public void firstTrkPt(Location location) {
 
         firstFixPassed = true;
         accelerationListener.setFirstFixPassed(firstFixPassed);
@@ -97,12 +97,13 @@ public class CustomLocationListener implements LocationListener {
         lastLocation = location;
         previousTrackPoint = currentTrackPoint;
         trkPts.add(currentTrackPoint);
+
         Toaster.toastLong("First location has beeen registered !!!");
-        Log.d("FIRST POINT","ADDED");
-        Log.d("Location event:",String.valueOf(currentTrackPoint.getTimeOfHandling()));
+        Log.d("FIRST POINT", "ADDED");
+        Log.d("Location event:", String.valueOf(currentTrackPoint.getTimeOfHandling()));
     }
-    public static void setPreviousTrackPoint (Trackpoint trackPoint)
-    {
+
+    public static void setPreviousTrackPoint(Trackpoint trackPoint) {
         previousTrackPoint = trackPoint;
     }
 }

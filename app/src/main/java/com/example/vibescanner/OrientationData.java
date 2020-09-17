@@ -5,6 +5,7 @@ public class OrientationData {
     private Float yOrientation;
     private Float zOrientation;
     private long handlingTime;
+
     public OrientationData(Float xOrientation, Float yOrientation, Float zOrientation, long handlingTime) {
         this.xOrientation = xOrientation;
         this.yOrientation = yOrientation;
@@ -12,15 +13,19 @@ public class OrientationData {
         this.handlingTime = handlingTime;
 
     }
+
     public Float getxOrientation() {
         return xOrientation;
     }
+
     public Float getyOrientation() {
         return yOrientation;
     }
+
     public Float getzOrientation() {
         return zOrientation;
     }
+
     public long getHandlingTime() {
         return handlingTime;
     }

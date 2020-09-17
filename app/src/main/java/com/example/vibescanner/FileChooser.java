@@ -26,6 +26,7 @@ public class FileChooser {
 
     // filter on file extension
     private String extension = null;
+
     public void setExtension(String extension) {
         this.extension = (extension == null) ? null :
                 extension.toLowerCase();
@@ -35,10 +36,12 @@ public class FileChooser {
     public interface FileSelectedListener {
         void fileSelected(File file);
     }
+
     public FileChooser setFileListener(FileSelectedListener fileListener) {
         this.fileListener = fileListener;
         return this;
     }
+
     private FileSelectedListener fileListener;
 
     public FileChooser(Activity activity) {
@@ -46,7 +49,8 @@ public class FileChooser {
         dialog = new Dialog(activity);
         list = new ListView(activity);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override public void onItemClick(AdapterView<?> parent, View view, int which, long id) {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int which, long id) {
                 String fileChosen = (String) list.getItemAtPosition(which);
                 File chosenFile = getChosenFile(fileChosen);
                 if (chosenFile.isDirectory()) {
@@ -76,12 +80,14 @@ public class FileChooser {
         this.currentPath = path;
         if (path.exists()) {
             File[] dirs = path.listFiles(new FileFilter() {
-                @Override public boolean accept(File file) {
+                @Override
+                public boolean accept(File file) {
                     return (file.isDirectory() && file.canRead());
                 }
             });
             File[] files = path.listFiles(new FileFilter() {
-                @Override public boolean accept(File file) {
+                @Override
+                public boolean accept(File file) {
                     if (!file.isDirectory()) {
                         if (!file.canRead()) {
                             return false;
@@ -103,8 +109,7 @@ public class FileChooser {
                 fileList = new String[dirs.length + files.length];
             } else {
 
-                if(dirs == null)
-                {
+                if (dirs == null) {
                     dialog.dismiss();
                     return;
                 }
@@ -113,14 +118,19 @@ public class FileChooser {
             }
             Arrays.sort(dirs);
             Arrays.sort(files);
-            for (File dir : dirs) { fileList[i++] = dir.getName(); }
-            for (File file : files ) { fileList[i++] = file.getName(); }
+            for (File dir : dirs) {
+                fileList[i++] = dir.getName();
+            }
+            for (File file : files) {
+                fileList[i++] = file.getName();
+            }
 
             // refresh the user interface
             dialog.setTitle(currentPath.getPath());
             list.setAdapter(new ArrayAdapter(activity,
                     android.R.layout.simple_list_item_1, fileList) {
-                @Override public View getView(int pos, View view, ViewGroup parent) {
+                @Override
+                public View getView(int pos, View view, ViewGroup parent) {
                     view = super.getView(pos, view, parent);
                     ((TextView) view).setSingleLine(true);
                     return view;

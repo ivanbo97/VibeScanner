@@ -30,17 +30,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        startTrackingBtn = (Button)findViewById(R.id.startTrackingBtn);
-        stopTrackingBtn = (Button)findViewById(R.id.stopTrackingBtn);
-        showOnMapBtn = (Button)findViewById(R.id.showTrackBtn);
-        uploadFileBtn = (Button)findViewById(R.id.uploadFileBtn);
+        startTrackingBtn = (Button) findViewById(R.id.startTrackingBtn);
+        stopTrackingBtn = (Button) findViewById(R.id.stopTrackingBtn);
+        showOnMapBtn = (Button) findViewById(R.id.showTrackBtn);
+        uploadFileBtn = (Button) findViewById(R.id.uploadFileBtn);
         stopTrackingBtn.setEnabled(false);
 
-
-
         int newFileNum = getExternalCacheDir().listFiles().length + 1;
-        gpxWriteFile = new File (getExternalCacheDir(),"trackInfo" +newFileNum +".gpx" );
+        gpxWriteFile = new File(getExternalCacheDir(), "trackInfo" + newFileNum + ".gpx");
 
         startTrackingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,25 +67,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public static File getFile (){return gpxWriteFile; }
 
-    private void startTracking()
-    {
-        Intent serviceIntent = new Intent(this,ForegroundService.class);
-        ContextCompat.startForegroundService(this,serviceIntent);
-        stopTrackingBtn.setEnabled(true);
-        Log.d("INFOO","CLICK");
+    public static File getFile() {
+        return gpxWriteFile;
     }
 
+    private void startTracking() {
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
+        stopTrackingBtn.setEnabled(true);
+        Log.d("INFOO", "CLICK");
+    }
 
-    private void stopTracking()
-    {
-        Intent serviceIntent = new Intent(this,ForegroundService.class);
+    private void stopTracking() {
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
         stopService(serviceIntent);
         stopTrackingBtn.setEnabled(false);
-
     }
-    private void processFile(){
+
+    private void processFile() {
         FileChooser fileChooser = new FileChooser(MainActivity.this);
 
         fileChooser.setFileListener(new FileChooser.FileSelectedListener() {
@@ -96,15 +93,11 @@ public class MainActivity extends AppCompatActivity {
             public void fileSelected(final File file) {
 
                 String filename = file.getAbsolutePath();
-                Log.d("File path",filename);
+                Log.d("File path", filename);
                 Log.d("File Name", filename);
                 Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                intent.putExtra("filePath",filename);
-
-
+                intent.putExtra("filePath", filename);
                 startActivity(intent);
-
-
             }
         }).showDialog();
 
@@ -113,10 +106,9 @@ public class MainActivity extends AppCompatActivity {
         fileChooser.showDialog();
     }
 
-    private void chooseFile(){
+    private void chooseFile() {
 
         FileChooser fileChooser = new FileChooser(MainActivity.this);
-
         fileChooser.setFileListener(new FileChooser.FileSelectedListener() {
             @Override
             public void fileSelected(final File file) {
@@ -130,12 +122,11 @@ public class MainActivity extends AppCompatActivity {
         fileChooser.showDialog();
     }
 
-    private void startUploading()
-    {
-        Toast toast = Toast.makeText(getApplicationContext(),"File is uploading...",Toast.LENGTH_SHORT);
+    private void startUploading() {
+        Toast toast = Toast.makeText(getApplicationContext(), "File is uploading...", Toast.LENGTH_SHORT);
         toast.show();
-        Intent serviceIntent = new Intent(this,UploadingService.class);
-        serviceIntent.putExtra("filePath",fileLocation);
-        ContextCompat.startForegroundService(this,serviceIntent);
+        Intent serviceIntent = new Intent(this, UploadingService.class);
+        serviceIntent.putExtra("filePath", fileLocation);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 }

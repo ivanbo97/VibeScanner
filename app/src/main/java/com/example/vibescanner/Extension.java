@@ -1,7 +1,6 @@
 package com.example.vibescanner;
 
 
-
 import java.util.LinkedHashMap;
 
 public class Extension {
@@ -33,11 +32,10 @@ public class Extension {
     }
 
     public int getExtensionsParsed() {
-       return this.extensionData != null ? this.extensionData.size() : 0;
+        return this.extensionData != null ? this.extensionData.size() : 0;
     }
 
-    public LinkedHashMap<String,Float> getHashMap()
-    {
+    public LinkedHashMap<String, Float> getHashMap() {
         return extensionData;
     }
 }

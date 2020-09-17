@@ -47,12 +47,17 @@ public class AccelerationListener implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+        //Intentionally left blank for future app development
     }
 
     public long getEventTime() {
         return eventTime;
     }
- public void newEvents () { accelInfo = new ArrayList<>(); }
+
+    public void newEvents() {
+        accelInfo = new ArrayList<>();
+    }
+
     public void setFirstFixPassed(boolean firstFixPassed) {
         this.firstFixPassed = firstFixPassed;
     }

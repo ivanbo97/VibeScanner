@@ -10,9 +10,6 @@ public class Trackpoint extends Extension {
     private Date time;
     private long timeOfHandling;
 
-    public Trackpoint() {
-    }
-
     public Double getLatitude() {
         return this.latitude;
     }
@@ -29,7 +26,11 @@ public class Trackpoint extends Extension {
         this.longitude = lon;
     }
 
-    public long getTimeOfHandling() { return timeOfHandling; }
+    public long getTimeOfHandling() {
+        return timeOfHandling;
+    }
 
-    public void setTimeOfHandling(long timeOfHandling) { this.timeOfHandling = timeOfHandling; }
+    public void setTimeOfHandling(long timeOfHandling) {
+        this.timeOfHandling = timeOfHandling;
+    }
 }

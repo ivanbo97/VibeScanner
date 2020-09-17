@@ -30,12 +30,8 @@ public class GPX extends Extension {
         this.track = trk;
     }
 
-
-
     public void addTrack(Track trk) {
-
         this.track = trk;
     }
-
 }
 

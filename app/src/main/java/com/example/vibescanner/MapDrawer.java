@@ -133,7 +133,6 @@ public class MapDrawer {
                 {
                     segment.setColor(Color.GREEN);
                     Log.d("Info","GREEN");
-
                 }
 
                 segment.getPaint().setStrokeJoin(Paint.Join.ROUND);
