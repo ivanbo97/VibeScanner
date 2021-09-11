@@ -1,6 +1,6 @@
 # About VibeScanner
 The purpose of this Android application is to register vibrations that occured during travelling with different vehicles. Data is collected from different device sensors: Linear Acceleration, Rotation Vector, GPS Reciever. After processesing, the collected data is stored in a gpx file. Thus you can see the mechanical influence imposed to your device during your travel. Generated track can be visualised in OpenStreetMaps and different segments of the route are colored in green, yellow, red, according to the different levels of vibration. You can also upload gpx files to a server and distribute the data in different tables in a relational database.
- **Important notice: Internet connection is not required for recording your track and mechanical influences.**
+###### **Important notice: Internet connection is not required for recording your track and mechanical influences.**
 *Source code of project's classes: https://github.com/ivanbo97/VibeScanner/tree/master/app/src/main/java/com/example/vibescanner
 
 *Server-side processing script (PHP): https://github.com/ivanbo97/VibeScanner/tree/master/server_side
