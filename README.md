@@ -1,11 +1,15 @@
 # About VibeScanner
-The purpose of this Android application is to register vibrations that occured during travelling with different vehicles. Data is collected from different device sensors: Linear Acceleration, Rotation Vector, GPS Reciever. After processesing, the collected data is stored in a gpx file. Thus you can see the mechanical influence imposed to your device during your travel. The generated track can be visualised in OpenStreetMaps and different segments of the route are colored in green, yellow, red, according to the different levels of vibration. You can also upload gpx files to a server and distribute the data in different tables in a relational database.
+The purpose of this Android application is to register vibrations that occured during travelling with different vehicles. Data is collected from different device sensors: Linear Acceleration, Rotation Vector, GPS Reciever. After processesing, the collected data is stored in a gpx file. Thus you can see the mechanical influence imposed to your device during your travel. Generated track can be visualised in OpenStreetMaps and different segments of the route are colored in green, yellow, red, according to the different levels of vibration. You can also upload gpx files to a server and distribute the data in different tables in a relational database.
+ **Important notice: Internet connection is not required for recording your track and mechanical influences.**
+*Source code of project's classes: https://github.com/ivanbo97/VibeScanner/tree/master/app/src/main/java/com/example/vibescanner
 
-*The source code of the classes which are descibed bellow is here: https://github.com/ivanbo97/VibeScanner/tree/master/app/src/main/java/com/example/vibescanner
+*Server-side processing script (PHP): https://github.com/ivanbo97/VibeScanner/tree/master/server_side
 
-*Server-side processing script: https://github.com/ivanbo97/VibeScanner/tree/master/server_side
+### An example of recorded track
 
-# A brief description of the application specific classes
+![TrackExample](https://i.ibb.co/CvzbJVB/Screenshot-20210911-084232-Vibe-Scanner1-53.jpg)
+
+# A brief description of application specific classes
  
 # 1. class Extension 
    This class is a representation of the <extension> element which is part of the GPX 1.1 schema.
@@ -49,7 +53,7 @@ It encapsulates ArrayList of references to objects of class OrientationData and 
 Sensor. The values obtained by this synthetic sensor are elements from rotation vector which correspond to sin(θ/2)  (θ – rotation angle). The direct 
 visualisation of this values can not give clarity about the device orientation in space. We have to convert the values to rotation matrix and after that
 obtain the orientation which represents three values - rotation around x,y and z-axis. Not every single rotation event is stored. There is a filter which
-evaluates the difference in rotation angle compared to the previous event. The methods of this class are also executed by a seperate thread. Thus rotation
+evaluates the difference in rotation angle compared to the previous event. Methods of this class are also executed by a seperate thread. Thus rotation
 events can be handled without missing acceleration and location events.
 
 # 9. class AccelAndRotRunnable
